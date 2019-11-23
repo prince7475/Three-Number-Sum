@@ -1,0 +1,46 @@
+write a function that takes in an array and a target value, 
+the function should find all triplets in the array
+
+function threeNumberSum(array,targetSum){
+  let result = []
+  array.sort((a,b) => a - b)
+  for(let i = 0; i < array.length - 2; i++){
+  let remainder = targetSum - array[i]
+    let left = i + 1
+    let right = array.length - 1
+    while(left < right){
+      let currSum = array[left] + array[right]
+      if(currSum === remainder){
+        result.push([array[i], array[left],array[right]])
+        left++
+        right--
+      }else if(currSum < remainder){
+        left++
+      }else {
+        right--
+      }
+    }
+  }
+  return result
+}
+
+- Sort given array
+let result = []
+-- Outter loop --> i = 0; i < array.length - 2
+let currNum = array[i]
+let remainder = targetSum - currNum
+  Inner Loop
+    - let left = i + 1
+    - let right = array.length - 1
+    while(left < right){
+      let currSum = array[left] + array[right]
+      if(remainder === currSum){
+      result.push([currNum, array[left], array[right]])
+      left++
+      right--
+      }else if (currSum < remainder){
+        left++
+      }else {
+        right--
+      }
+    }
